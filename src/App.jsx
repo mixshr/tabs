@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { FaAngleDoubleRight } from 'react-icons/fa'
+import JobInfo from "./JobInfo";
 // ATTENTION!!!!!!!!!!
 // I SWITCHED TO PERMANENT DOMAIN
 const url = 'https://course-api.com/react-tabs-project'
@@ -10,7 +11,7 @@ function App() {
   const fetchJobs = async () => {
     try {
       const response = await fetch(url);
-      const newJobs = response.json();
+      const newJobs = await response.json();
       setJobs(newJobs);
       setIsLoading(false);
     } catch (error) {
@@ -28,7 +29,9 @@ function App() {
     </section>
   }
 
-  return <h2>tabs project setup</h2>
+  return <section className='jobs-center'>
+    <JobInfo jobs={jobs}/>
+  </section>
 }
 
 export default App
